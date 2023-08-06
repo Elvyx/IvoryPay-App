@@ -29,7 +29,7 @@ public class successful_registration {
 	driver.findElement(By.cssSelector("a[href='/register']")).click();
 	driver.findElement(By.xpath("//input[@id='register_firstName']")).sendKeys("Martin");
 	driver.findElement(By.cssSelector("#register_lastName")).sendKeys("Luther");
-	driver.findElement(By.cssSelector("#register_email")).sendKeys("mlther@yopmail.com");
+	driver.findElement(By.cssSelector("#register_email")).sendKeys("mluther@yopmail.com");
 	driver.findElement(By.id("register_businessName")).sendKeys("picano Services");
 	driver.findElement(By.cssSelector("#rc_select_0")).click();
 	driver.findElement(By.xpath("//div[contains(text(),'Nigeria')]")).click();
