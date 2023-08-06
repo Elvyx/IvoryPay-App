@@ -33,7 +33,7 @@ public class successful_registration {
 	driver.findElement(By.id("register_businessName")).sendKeys("picano Services");
 	driver.findElement(By.cssSelector("#rc_select_0")).click();
 	driver.findElement(By.xpath("//div[contains(text(),'Nigeria')]")).click();
-	driver.findElement(By.xpath("(//input[@type='text'])[4]")).sendKeys("8175777712");
+	driver.findElement(By.xpath("(//input[@type='text'])[4]")).sendKeys("8177777712");
 	driver.findElement(By.id("register_password")).sendKeys("Password123*");
 	driver.findElement(By.xpath("(//*[name()='svg'])[2]")).click();
 	driver.findElement(By.id("register_confirmPassword")).sendKeys("Password123*");
