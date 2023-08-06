@@ -26,9 +26,6 @@ public class successful_registration {
 	driver.manage().window().maximize();
 	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	driver.get("https://qa.d1ainun5cjrnni.amplifyapp.com");
-	LandingPage landingPage= new LandingPage(driver);
-	SignUpScreen signup= new SignUpScreen(driver);
-	VerifyEmail verifyEmail=new VerifyEmail(driver);
 	driver.findElement(By.cssSelector("a[href='/register']")).click();
 	driver.findElement(By.xpath("//input[@id='register_firstName']")).sendKeys("Martin");
 	driver.findElement(By.cssSelector("#register_lastName")).sendKeys("Luther");
