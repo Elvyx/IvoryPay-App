@@ -8,6 +8,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
 import Ivory_AppRegistration_pageObject.LandingPage;
 import Ivory_AppRegistration_pageObject.SignUpScreen;
@@ -36,8 +39,15 @@ public class successful_registrationFramework {
 	String vm=driver.findElement(By.cssSelector("div[class='mb-4'] div")).getText();
 	Assert.assertTrue(vm.equalsIgnoreCase("A verification Link has been sent to your email. Verify to log in"));
 	System.out.println(vm);
-	
-	driver.switchTo().window(driver.getWindowHandle());
+
+
+	//Switch to New Tab
+	driver.switchTo().newWindow(WindowType.TAB);
+	Set<String> handles=driver.getWindowHandles();
+	Iterator<String> it=handles.iterator();
+	String parentwindowId=it.next();
+	String childwindowId= it.next();
+	driver.switchTo().window(childwindowId);;
 	driver.get("https://yopmail.com/");
 	
 	VerifyEmail verifyEmail=new VerifyEmail(driver);
