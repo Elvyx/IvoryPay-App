@@ -49,7 +49,13 @@ public class successful_registration {
 	Assert.assertTrue(vm.equalsIgnoreCase("A verification Link has been sent to your email. Verify to log in"));
 	System.out.println(vm);
 	
-	driver.switchTo().window(driver.getWindowHandle());
+	driver.switchTo().newWindow(WindowType.TAB);
+	Set<String> handles=driver.getWindowHandles();
+	Iterator<String>it=handles.iterator();
+	String parentwindowid=it.next();
+	String childwindowid=it.next();
+	driver.switchTo().window(childwindowid);
+			
 	driver.get("https://yopmail.com/");
 	driver.findElement(By.id("login")).sendKeys("mlther");
 	driver.findElement(By.id("login")).sendKeys(Keys.RETURN);
