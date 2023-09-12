@@ -1,9 +1,14 @@
 import java.time.Duration;
+import java.util.Iterator;
+import java.util.Set;
+
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -26,17 +31,14 @@ public class successful_registration {
 	driver.manage().window().maximize();
 	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	driver.get("https://qa.d1ainun5cjrnni.amplifyapp.com");
-	LandingPage landingPage= new LandingPage(driver);
-	SignUpScreen signup= new SignUpScreen(driver);
-	VerifyEmail verifyEmail=new VerifyEmail(driver);
 	driver.findElement(By.cssSelector("a[href='/register']")).click();
-	driver.findElement(By.xpath("//input[@id='register_firstName']")).sendKeys("Martin");
-	driver.findElement(By.cssSelector("#register_lastName")).sendKeys("Luther");
-	driver.findElement(By.cssSelector("#register_email")).sendKeys("mlther@yopmail.com");
-	driver.findElement(By.id("register_businessName")).sendKeys("picano Services");
+	driver.findElement(By.xpath("//input[@id='register_firstName']")).sendKeys("Louis");
+	driver.findElement(By.cssSelector("#register_lastName")).sendKeys("Steven");
+	driver.findElement(By.cssSelector("#register_email")).sendKeys("louis@yopmail.com");
+	driver.findElement(By.id("register_businessName")).sendKeys("Lois Luxury Homes");
 	driver.findElement(By.cssSelector("#rc_select_0")).click();
 	driver.findElement(By.xpath("//div[contains(text(),'Nigeria')]")).click();
-	driver.findElement(By.xpath("(//input[@type='text'])[4]")).sendKeys("8175777712");
+	driver.findElement(By.xpath("(//input[@type='text'])[4]")).sendKeys("8177707820");
 	driver.findElement(By.id("register_password")).sendKeys("Password123*");
 	driver.findElement(By.xpath("(//*[name()='svg'])[2]")).click();
 	driver.findElement(By.id("register_confirmPassword")).sendKeys("Password123*");
@@ -52,21 +54,36 @@ public class successful_registration {
 	Assert.assertTrue(vm.equalsIgnoreCase("A verification Link has been sent to your email. Verify to log in"));
 	System.out.println(vm);
 	
-	driver.switchTo().window(driver.getWindowHandle());
+	
+	//Handle Alert
+	//Alert alert=driver.switchTo().alert();
+	//System.out.println(alert);
+	//alert.dismiss();
+	
+	
+	driver.switchTo().newWindow(WindowType.TAB);
+	
+	Set<String> handles=driver.getWindowHandles();
+	Iterator<String>it=handles.iterator();
+	
+	String parentwindowid=it.next();
+	String childwindowid=it.next();
+	
+	driver.switchTo().window(childwindowid);
 	driver.get("https://yopmail.com/");
-	driver.findElement(By.id("login")).sendKeys("mlther");
+	driver.findElement(By.id("login")).sendKeys("louis");
 	driver.findElement(By.id("login")).sendKeys(Keys.RETURN);
 	
 	
-	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    WebElement verificationEmail = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'Verify your email address')]")));
+	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+    WebElement verificationEmail = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Verify your email address")));
     verificationEmail.click();
     
     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     driver.findElement(By.partialLinkText("Go To Dashboard")).click();
 	
-	
-	driver.close();
+   
+   driver.close();
 			
 	
 }

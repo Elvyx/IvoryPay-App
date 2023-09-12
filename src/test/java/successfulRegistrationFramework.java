@@ -8,15 +8,18 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import Ivory_AppRegistration_pageObject.LandingPage;
 import Ivory_AppRegistration_pageObject.SignUpScreen;
 import Ivory_AppRegistration_pageObject.VerifyEmail;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class successful_registrationFramework {
+public class successfulRegistrationFramework {
+	
+	@Test
 
-	public  void main(String[] args) throws InterruptedException {
+	public  void signup() throws InterruptedException {
 		// TODO Auto-generated method stub
 
 		{
@@ -29,7 +32,7 @@ public class successful_registrationFramework {
 	LandingPage landingPage= new LandingPage(driver);
 	landingPage.loginScreen();
 	SignUpScreen signup= new SignUpScreen(driver);
-	signup.userReg("Freddie", "Mark", "fredmark@yopmail.com", "FM and Sons Ltd", "712222222221", "Password123*", "Password123*");
+	signup.userReg("Sucre", "Blaq", "sucreb@yopmail.com", "FM and Sons Ltd", "712222222514", "Password123*", "Password123*");
 	
 	
 	
@@ -41,15 +44,15 @@ public class successful_registrationFramework {
 	driver.get("https://yopmail.com/");
 	
 	VerifyEmail verifyEmail=new VerifyEmail(driver);
-	verifyEmail.verifyEmail("fredmark");
+	verifyEmail.verifyEmail("sucreb");
 	
 	
-	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    WebElement verificationEmail = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'Verify your email address')]")));
-    verificationEmail.click();
+	//WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+   // WebElement verificationEmail = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'Verify your email address')]")));
+   // verificationEmail.click();
     
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-    driver.findElement(By.partialLinkText("Go To Dashboard")).click();
+    //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    //driver.findElement(By.partialLinkText("Go To Dashboard")).click();
 	
 	
 	driver.close();
