@@ -32,6 +32,7 @@ public class successful_registration {
 	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	driver.get("https://qa.d1ainun5cjrnni.amplifyapp.com");
 	driver.findElement(By.cssSelector("a[href='/register']")).click();
+
 	driver.findElement(By.xpath("//input[@id='register_firstName']")).sendKeys("Louis");
 	driver.findElement(By.cssSelector("#register_lastName")).sendKeys("Steven");
 	driver.findElement(By.cssSelector("#register_email")).sendKeys("louis@yopmail.com");
@@ -54,6 +55,7 @@ public class successful_registration {
 	Assert.assertTrue(vm.equalsIgnoreCase("A verification Link has been sent to your email. Verify to log in"));
 	System.out.println(vm);
 	
+
 	
 	//Handle Alert
 	//Alert alert=driver.switchTo().alert();
@@ -70,6 +72,8 @@ public class successful_registration {
 	String childwindowid=it.next();
 	
 	driver.switchTo().window(childwindowid);
+
+	
 	driver.get("https://yopmail.com/");
 	driver.findElement(By.id("login")).sendKeys("louis");
 	driver.findElement(By.id("login")).sendKeys(Keys.RETURN);
